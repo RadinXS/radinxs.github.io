@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEBULA | Beyond the Ordinary</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:#080817;
+  overflow-x:hidden;
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:-50%;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 30% 40%,#6025a8 0,transparent 35%),
+    radial-gradient(circle at 70% 60%,#103d91 0,transparent 35%),
+    radial-gradient(circle at 50% 50%,#181047 0,transparent 50%);
+  animation:aurora 12s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  to { transform:translate(8%,5%) rotate(15deg) scale(1.2); }
+}
+
+#particles {
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+}
+
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 8%;
+}
+
+.logo {
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:5px;
+  color:#c8a5ff;
+  text-shadow:0 0 20px #a855f7;
+}
+
+nav a {
+  color:#ddd;
+  text-decoration:none;
+  margin-left:25px;
+  transition:.3s;
+}
+
+nav a:hover { color:#c084fc; }
+
+.hero {
+  min-height:75vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.tag {
+  border:1px solid #a855f788;
+  border-radius:30px;
+  padding:10px 20px;
+  color:#d8b4fe;
+  background:#a855f711;
+  letter-spacing:3px;
+  font-size:12px;
+  margin-bottom:30px;
+}
+
+h1 {
+  font-size:clamp(45px,9vw,100px);
+  font-weight:900;
+  letter-spacing:-4px;
+  line-height:1.05;
+  background:linear-gradient(90deg,#fff,#c084fc,#60a5fa,#fff);
+  background-size:300%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:gradient 6s linear infinite;
+}
+
+@keyframes gradient {
+  to { background-position:300%; }
+}
+
+.hero p {
+  max-width:550px;
+  color:#aaa6c5;
+  line-height:1.8;
+  margin:25px 0 35px;
+}
+
+button {
+  border:0;
+  padding:16px 35px;
+  border-radius:40px;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#9333ea,#2563eb);
+  box-shadow:0 0 25px #9333ea66;
+  transition:.3s;
+}
+
+button:hover {
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 0 40px #9333eaaa;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:0 auto;
+  padding:30px 25px 100px;
+}
+
+.card {
+  padding:30px;
+  border:1px solid #ffffff18;
+  border-radius:20px;
+  background:#ffffff09;
+  backdrop-filter:blur(15px);
+  transition:.4s;
+}
+
+.card:hover {
+  transform:translateY(-10px);
+  border-color:#a855f7;
+  box-shadow:0 10px 40px #9333ea33;
+}
+
+.card .icon {
+  font-size:35px;
+  margin-bottom:20px;
+}
+
+.card h2 { margin-bottom:12px; }
+.card p { color:#aaa6c5; line-height:1.7; }
+
+footer {
+  text-align:center;
+  padding:30px;
+  color:#77718e;
+  border-top:1px solid #ffffff12;
+  font-size:13px;
+}
+
+@media(max-width:600px) {
+  nav { padding:20px; }
+  nav a { margin-left:10px; font-size:12px; }
+  h1 { letter-spacing:-2px; }
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<nav>
+  <div class="logo">NEBULA.</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="tag">✦ WELCOME TO THE FUTURE ✦</div>
+  <h1>BEYOND<br>THE ORDINARY.</h1>
+  <p>
+    A digital universe where creativity meets technology.
+    Explore something different, experience something extraordinary.
+  </p>
+  <button onclick="explore()">EXPLORE NOW ↗</button>
+</section>
+
+<section class="cards" id="features">
+  <div class="card">
+    <div class="icon">✧</div>
+    <h2>Creativity</h2>
+    <p>Beautiful visuals and futuristic design made to stand out.</p>
+  </div>
+  <div class="card">
+    <div class="icon">⚡</div>
+    <h2>Performance</h2>
+    <p>Lightweight animations and smooth interactions.</p>
+  </div>
+  <div class="card">
+    <div class="icon">◈</div>
+    <h2>Innovation</h2>
+    <p>Experiment, discover and create something new.</p>
+  </div>
+</section>
+
+<footer>
+  NEBULA © 2026 — MADE FOR THE FUTURE
+</footer>
+
+<script>
+function explore() {
+  document.querySelector("#features").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+let particles=[];
+
+function resize() {
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+  particles=Array.from({length:100},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2+0.5,
+    speed:Math.random()*0.5+0.1,
+    alpha:Math.random()
+  }));
+}
+
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p=>{
+    p.y-=p.speed;
+    if(p.y<0) {
+      p.y=canvas.height;
+      p.x=Math.random()*canvas.width;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(200,170,255,${p.alpha})`;
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+addEventListener("resize",resize);
+resize();
+animate();
+</script>
+
+</body>
+</html>
